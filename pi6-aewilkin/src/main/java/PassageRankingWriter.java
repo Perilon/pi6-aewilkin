@@ -3,11 +3,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -42,13 +46,9 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
    */
   
   public static final String PARAM_OUTPUTDIR = "OutputDir";
-  
-//  public static final String PARAM_OUTPUTDIR = "src/main/resources/outputData/";
-  
+    
   public static final String PARAM_INPUTDIR = "InputDir";
   
-//  public static final String PARAM_INPUTDIR = "src/main/resources/inputData/";
-
 
   private File mOutputDir;
 
@@ -104,10 +104,49 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
      String filenameString = (String) getConfigParameterValue(PARAM_OUTPUTDIR) + writeToFileName;
      
      System.out.println("filenameString = " + filenameString);
-     
-//     creates "nullpassageRanking.txt" and saves to pi4-aewilkin
-     
+          
 //     --------------------------------------------------------------------------------------------
+     
+     
+     /*Get a list of all the question IDs that exist*/
+     
+     FSIndex inputDocumentIndex0 = jcas.getAnnotationIndex(InputDocument.type);
+     FSIterator inputDocumentIter0 = inputDocumentIndex0.iterator();
+     
+     ArrayList<Integer> questionIDs = new ArrayList<Integer>();
+     
+     while (inputDocumentIter0.hasNext()) {
+       InputDocument inputDocument = (InputDocument) inputDocumentIter0.next();
+
+       FSIndex QASetIndex0 = jcas.getAnnotationIndex(QASet.type);
+       FSIterator QASetIter0 = QASetIndex0.iterator();
+       
+       while (QASetIter0.hasNext()) {
+         QASet qaSet0 = (QASet) QASetIter0.next();
+         int id = Integer.parseInt(((Question) qaSet0.getQuestion()).getId());
+         questionIDs.add(id);
+       }
+     }
+     
+     /*Get a list of 10 pseudorandom question IDs from the list of all question IDs*/
+     
+     Random rand = new Random(123456789);
+     
+     int num = 10;
+     int size = questionIDs.size();
+     
+     ArrayList<Integer> subset = new ArrayList<Integer>();
+     
+     Set<Integer> ints = new HashSet<Integer>();
+     
+     while (subset.size() < num) {
+       int randInt = rand.nextInt(size);
+       if (!ints.contains(randInt)) {
+         ints.add(randInt);
+         subset.add(questionIDs.get(randInt));
+       }
+     }
+         
 
      
      FSIndex inputDocumentIndex = jcas.getAnnotationIndex(InputDocument.type);
@@ -144,40 +183,28 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
             
             while (QASetIter.hasNext()) {
               
-              questionCounter++;
               
               QASet qaSet = (QASet) QASetIter.next();
-              
-//              From last homework assignment
-//              
-//              FSArray passageFSArray = qaSet.getPassageFSArray();
-//              
-//              int len = passageFSArray.size();
-//              
-//              for (int i = 0; i < len; i++) {
-//                
-//                String Id = ((Passage) passageFSArray.get(i)).getId();
-//                String docID = ((Passage) passageFSArray.get(i)).getSourceDocId();
-//                String score = Double.toString(((Passage) passageFSArray.get(i)).getScore());
-//                String sentence = ((Passage) passageFSArray.get(i)).getSentence();
-//                
-//                bw.write( Id + " " + docID + " " + score + " " + sentence + "\n");
-//                System.out.println( Id + " " + docID + " " + score + " " + sentence );
-              
+                                          
               String ID = ((Question) qaSet.getQuestion()).getId();
               
-              double Pat1 = qaSet.getPrecisionAt1();
-              double Pat5 = qaSet.getPrecisionAt5();
-              double RR = qaSet.getReciprocalRank();
+              if (subset.contains(Integer.parseInt(ID))) {
+                
+                questionCounter++;
               
-              rrRunningTotal += RR;
-              
-              double AP = qaSet.getAveragePrecision();
-              
-              apRunningTotal += AP;
-                            
-              bw.write(ID + "," + Double.toString(Pat1) + "," + Double.toString(Pat5) + "," + 
-                      Double.toString(RR) + "," + Double.toString(AP) + "\n");
+                double Pat1 = qaSet.getPrecisionAt1();
+                double Pat5 = qaSet.getPrecisionAt5();
+                double RR = qaSet.getReciprocalRank();
+                
+                rrRunningTotal += RR;
+                
+                double AP = qaSet.getAveragePrecision();
+                
+                apRunningTotal += AP;
+                              
+                bw.write(ID + "," + Double.toString(Pat1) + "," + Double.toString(Pat5) + "," + 
+                        Double.toString(RR) + "," + Double.toString(AP) + "\n");
+              }
             }
             
             double MAP = apRunningTotal / (double) questionCounter;
