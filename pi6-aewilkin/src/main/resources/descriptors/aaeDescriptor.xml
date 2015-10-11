@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>  
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="PassageAnnotatorDescriptor">
+      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/PassageAnnotatorDescriptor.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="QuestionAnnotatorDescriptor">
+      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/QuestionAnnotatorDescriptor.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="TokenAnnotatorDescriptor">
+      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/TokenAnnotatorDescriptor.xml"/>
+    </delegateAnalysisEngine>
+  <delegateAnalysisEngine key="QASetDescriptor">
+      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/QASetDescriptor.xml"/>
+    
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="InputDocumentAnnotatorDescriptor">
+      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/InputDocumentAnnotatorDescriptor.xml"/>
+    
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>aaeDescriptor</name>
+    <description>This is a template (empty) descriptor for your Aggregate Analysis Engine.  You will need to specify your type system and capabilities, in addition to your individual analysis engines.</description>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters searchStrategy="language_fallback"/>
+    <configurationParameterSettings/>
+    <flowConstraints>
+      <fixedFlow>
+        <node>PassageAnnotatorDescriptor</node>
+        <node>QuestionAnnotatorDescriptor</node>
+        <node>TokenAnnotatorDescriptor</node>
+      <node>QASetDescriptor</node>
+        <node>InputDocumentAnnotatorDescriptor</node>
+      </fixedFlow>
+    </flowConstraints>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">type.Token</type>
+          <type allAnnotatorFeatures="true">type.Question</type>
+          <type allAnnotatorFeatures="true">type.QASet</type>
+          <type allAnnotatorFeatures="true">type.Passage</type>
+          <type allAnnotatorFeatures="true">type.InputDocument</type>
+          <type allAnnotatorFeatures="true">type.ComponentAnnotation</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+  <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>
