@@ -3,21 +3,21 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="InputDocumentAnnotatorDescriptor">
+      <import location="/home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/InputDocumentAnnotatorDescriptor.xml"/>
+    </delegateAnalysisEngine>
     <delegateAnalysisEngine key="PassageAnnotatorDescriptor">
-      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/PassageAnnotatorDescriptor.xml"/>
+      <import location="/home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/PassageAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="QuestionAnnotatorDescriptor">
-      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/QuestionAnnotatorDescriptor.xml"/>
+      <import location="/home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/QuestionAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="TokenAnnotatorDescriptor">
-      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/TokenAnnotatorDescriptor.xml"/>
-    </delegateAnalysisEngine>
-  <delegateAnalysisEngine key="QASetDescriptor">
-      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/QASetDescriptor.xml"/>
+  <delegateAnalysisEngine key="TokenAnnotatorDescriptor">
+      <import location="/home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/TokenAnnotatorDescriptor.xml"/>
     
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="InputDocumentAnnotatorDescriptor">
-      <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/InputDocumentAnnotatorDescriptor.xml"/>
+    <delegateAnalysisEngine key="QASetDescriptor">
+      <import location="/home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/QASetDescriptor.xml"/>
     
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>

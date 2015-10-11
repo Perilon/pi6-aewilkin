@@ -130,7 +130,7 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
      
      /*Get a list of 10 pseudorandom question IDs from the list of all question IDs*/
      
-     Random rand = new Random(123456789);
+     Random rand = new Random(169719);
      
      int num = 10;
      int size = questionIDs.size();
@@ -178,8 +178,14 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
             int questionCounter = 0;
             double apRunningTotal = 0;
             double rrRunningTotal = 0;
+            double microAverageF1RunningTotal = 0;
+            double tpRunningTotal = 0;
+            double fpRunningTotal = 0;
+            double fnRunningTotal = 0;
             
-            bw.write("Question ID,Precision at 1,Precision at 5,Reciprocal rank,Average precision\n");
+            
+            bw.write("Question ID,Precision at 1,Precision at 5,Reciprocal rank,Average precision,,TP,FN,FP,TN,Precision,"
+                    + "Recall,Accuracy,Error,F1\n");
             
             while (QASetIter.hasNext()) {
               
@@ -195,23 +201,78 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
                 double Pat1 = qaSet.getPrecisionAt1();
                 double Pat5 = qaSet.getPrecisionAt5();
                 double RR = qaSet.getReciprocalRank();
-                
-                rrRunningTotal += RR;
-                
                 double AP = qaSet.getAveragePrecision();
                 
+                double TP = qaSet.getTP();
+                double FP = qaSet.getFP();
+                double TN = qaSet.getTN();
+                double FN = qaSet.getFN();
+                
+                double Precision = qaSet.getPrecision();
+                double Recall = qaSet.getRecall();
+                double Accuracy = qaSet.getAccuracy();
+                double Error = qaSet.getError();
+                double F1 = qaSet.getF1();
+                
+                rrRunningTotal += RR;
                 apRunningTotal += AP;
-                              
+                microAverageF1RunningTotal += F1;
+                
+                tpRunningTotal += TP;
+                fpRunningTotal += FP;
+                fnRunningTotal += FN;
+                                              
                 bw.write(ID + "," + Double.toString(Pat1) + "," + Double.toString(Pat5) + "," + 
-                        Double.toString(RR) + "," + Double.toString(AP) + "\n");
+                        Double.toString(RR) + "," + Double.toString(AP) + "," + "," + 
+                        
+                        Double.toString(TP) + "," + Double.toString(FN) + "," + 
+                        Double.toString(FP) + "," + Double.toString(TN) + "," + 
+                        Double.toString(Precision) + "," + Double.toString(Recall) + "," +
+                        Double.toString(Accuracy) + "," + Double.toString(Error) + "," +
+                        Double.toString(F1) + "\n");
               }
             }
             
             double MAP = apRunningTotal / (double) questionCounter;
             double MRR = rrRunningTotal / (double) questionCounter;
+            double microAverageF1 = microAverageF1RunningTotal / (double) questionCounter;
+            double macroPrecision = 0;
+            double macroRecall = 0;
+            double macroF1 = 0;
+            
+            if ((tpRunningTotal + fpRunningTotal) != 0) {
+              macroPrecision = tpRunningTotal / (tpRunningTotal + fpRunningTotal);
+            } else {
+              macroPrecision = 0;
+            }
+            
+            if ((tpRunningTotal + fnRunningTotal) != 0) {
+              macroRecall = tpRunningTotal / (tpRunningTotal + fnRunningTotal);
+            } else {
+              macroRecall = 0;
+            }       
+            
+            if ((macroPrecision + macroRecall) != 0) {
+              macroF1 = (2 * ((macroPrecision * macroRecall) / (macroPrecision + macroRecall)));
+            } else {
+              macroF1 = 0;
+            }
             
             System.out.println("Mean average precision: " + Double.toString(MAP));
             System.out.println("Mean reciprocal rank: " + Double.toString(MRR));
+            System.out.println("Micro-average F1 score: " + Double.toString(microAverageF1));
+            System.out.println("Macro-average F1 score: " + Double.toString(macroF1));
+            System.out.println("TP total: " + Double.toString(tpRunningTotal));
+            System.out.println("FP total: " + Double.toString(fpRunningTotal));
+            System.out.println("FN total: " + Double.toString(fnRunningTotal));
+            
+            bw.write("\n\nMAP = " + Double.toString(MAP));
+            bw.write("\nMRR = " + Double.toString(MRR));
+            bw.write("\nMicro-average F1 = " + Double.toString(microAverageF1));
+            bw.write("\nMacro-average F1 = " + Double.toString(macroF1));
+            bw.write("\nTP total = " + Double.toString(tpRunningTotal));
+            bw.write("\nFP total = " + Double.toString(fpRunningTotal));
+            bw.write("\nFN total = " + Double.toString(fnRunningTotal));
             
             bw.close();
             System.out.println("Done");

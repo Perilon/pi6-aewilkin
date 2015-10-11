@@ -29,12 +29,8 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
     
     
     FSIndex QASetIndex = aJCas.getAnnotationIndex(QASet.type);
-    
-    
-    
+
     InputDocument inputDocument = new InputDocument(aJCas);
-    
-    
     
     Iterator qaIter = QASetIndex.iterator();
     
@@ -140,7 +136,6 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       }
       
       
-      
       /*Define a class for passages that is made comparable, in order to be able to sort the passages by score using a regular array instead of a 
       stupid FSArray that can't implement jack.  This array will then be turned back into an FSArray, which will appear ranked, and that will become the
       RankedPassageFSArray feature of the QASet type.*/
@@ -221,7 +216,6 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
           double anotherPsgScore = ((Psg) anotherPsg).getScore();
           return Double.compare(anotherPsgScore, this.score);
         }
-        
       }
       
       /*Put each member of passageFSArray into a regular array; then sort the array*/
@@ -418,6 +412,79 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       } else {
         AP = 0;
       }
+      
+      /*Calculate TP, FP, TN, FN*/
+      
+      qaSet.setRankThreshold(5);
+      double rankThreshold = qaSet.getRankThreshold();
+      
+      int TP = 0;
+      int FP = 0;
+      int TN = 0;
+      int FN = 0;
+      
+      for (int i = 0; i < passageFSArrayLen; i++) {
+        if (((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true) && i < rankThreshold) {
+          TP++;
+        } else if (((((Passage) RankedPassageFSArray.get(i)).getLabel()) == false) && i < rankThreshold) {
+          FP++;
+        } else if (((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true) && i >= rankThreshold) {
+          FN++;
+        } else if (((((Passage) RankedPassageFSArray.get(i)).getLabel()) == false) && i >= rankThreshold) {
+          TN++;
+        }
+      }
+      
+      /*Calculate precision, recall, accuracy, error, and F1*/
+      
+      double tp = (double) TP;
+      double fp = (double) FP;
+      double tn = (double) TN;
+      double fn = (double) FN;
+      double precision = 0;
+      double recall = 0;
+      double accuracy = 0;
+      double error = 0;
+      double f1 = 0;     
+      
+      if ((tp + fp) != 0) {
+        precision = tp / (tp + fp);
+      } else {
+        precision = 0;
+      }
+      
+      if ((tp + fn) != 0) {
+        recall = tp / (tp + fn);
+      } else {
+        recall = 0;
+      }
+      
+      if ((tp + fp + tn + fn) != 0) {
+        accuracy = (tp + tn) / (tp + fp + tn + fn);
+        error = (fp + fn) / (tp + fp + tn + fn);
+      } else {
+        accuracy = 0;
+        error = 0;
+      }
+
+      if ((precision + recall) != 0) {
+        f1 = (2 * ((precision * recall) / (precision + recall)));
+      } else {
+        f1 = 0;
+      }
+      
+      /*Set all the various values*/
+      
+      qaSet.setTP(TP);
+      qaSet.setFP(FP);
+      qaSet.setFN(FN);
+      qaSet.setTN(TN);
+      
+      qaSet.setPrecision(precision);
+      qaSet.setRecall(recall);
+      qaSet.setAccuracy(accuracy);
+      qaSet.setError(error);
+      qaSet.setF1(f1);
       
       qaSet.setAveragePrecision(AP);      
       

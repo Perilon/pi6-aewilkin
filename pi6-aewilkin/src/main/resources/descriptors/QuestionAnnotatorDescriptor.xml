@@ -11,7 +11,7 @@
     <configurationParameterSettings/>
     <typeSystemDescription>
       <imports>
-        <import location="/home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/typeSystem.xml"/>
+        <import location="/home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/typeSystem.xml"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>

@@ -159,6 +159,56 @@ You need to implement the types requried for your ranking model.</description>
           <description>Number of passages for a question that are correct answers</description>
           <rangeTypeName>uima.cas.Integer</rangeTypeName>
         </featureDescription>
+      <featureDescription>
+          <name>TP</name>
+          <description>Number of true positives in the QASet</description>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>FP</name>
+          <description>Number of false positives in the QASet</description>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>TN</name>
+          <description>Number of true negatives in the QASet</description>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>FN</name>
+          <description>Number of false negatives in the QASet</description>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>rankThreshold</name>
+          <description>The threshold value for calculating TP, FP, TN, FN</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+      <featureDescription>
+          <name>precision</name>
+          <description>Precision over a QASet using rankThreshold and TP/FP/TN/FN</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>recall</name>
+          <description>Recall over a QASet using rankThreshold and TP/FP/TN/FN</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>accuracy</name>
+          <description>Accuracy over a QASet using rankThreshold and TP/FP/TN/FN</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>error</name>
+          <description>Error over a QASet using rankThreshold and TP/FP/TN/FN</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>F1</name>
+          <description>F1 score over a QASet using rankThreshold and TP/FP/TN/FN</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
       </features>
     </typeDescription>
   </types>

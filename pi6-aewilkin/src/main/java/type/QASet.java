@@ -13,8 +13,8 @@ import org.apache.uima.jcas.cas.FSArray;
 
 
 /** Keeps track of which questions go with which answers
- * Updated by JCasGen Sun Oct 04 23:30:32 EDT 2015
- * XML source: /home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/typeSystem.xml
+ * Updated by JCasGen Sun Oct 11 18:56:45 EDT 2015
+ * XML source: /home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/aaeDescriptor.xml
  * @generated */
 public class QASet extends ComponentAnnotation {
   /** @generated
@@ -316,6 +316,226 @@ public class QASet extends ComponentAnnotation {
     if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_numCorrect == null)
       jcasType.jcas.throwFeatMissing("numCorrect", "type.QASet");
     jcasType.ll_cas.ll_setIntValue(addr, ((QASet_Type)jcasType).casFeatCode_numCorrect, v);}    
+   
+    
+  //*--------------*
+  //* Feature: TP
+
+  /** getter for TP - gets Number of true positives in the QASet
+   * @generated
+   * @return value of the feature 
+   */
+  public int getTP() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_TP == null)
+      jcasType.jcas.throwFeatMissing("TP", "type.QASet");
+    return jcasType.ll_cas.ll_getIntValue(addr, ((QASet_Type)jcasType).casFeatCode_TP);}
+    
+  /** setter for TP - sets Number of true positives in the QASet 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setTP(int v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_TP == null)
+      jcasType.jcas.throwFeatMissing("TP", "type.QASet");
+    jcasType.ll_cas.ll_setIntValue(addr, ((QASet_Type)jcasType).casFeatCode_TP, v);}    
+   
+    
+  //*--------------*
+  //* Feature: FP
+
+  /** getter for FP - gets Number of false positives in the QASet
+   * @generated
+   * @return value of the feature 
+   */
+  public int getFP() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_FP == null)
+      jcasType.jcas.throwFeatMissing("FP", "type.QASet");
+    return jcasType.ll_cas.ll_getIntValue(addr, ((QASet_Type)jcasType).casFeatCode_FP);}
+    
+  /** setter for FP - sets Number of false positives in the QASet 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setFP(int v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_FP == null)
+      jcasType.jcas.throwFeatMissing("FP", "type.QASet");
+    jcasType.ll_cas.ll_setIntValue(addr, ((QASet_Type)jcasType).casFeatCode_FP, v);}    
+   
+    
+  //*--------------*
+  //* Feature: TN
+
+  /** getter for TN - gets Number of true negatives in the QASet
+   * @generated
+   * @return value of the feature 
+   */
+  public int getTN() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_TN == null)
+      jcasType.jcas.throwFeatMissing("TN", "type.QASet");
+    return jcasType.ll_cas.ll_getIntValue(addr, ((QASet_Type)jcasType).casFeatCode_TN);}
+    
+  /** setter for TN - sets Number of true negatives in the QASet 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setTN(int v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_TN == null)
+      jcasType.jcas.throwFeatMissing("TN", "type.QASet");
+    jcasType.ll_cas.ll_setIntValue(addr, ((QASet_Type)jcasType).casFeatCode_TN, v);}    
+   
+    
+  //*--------------*
+  //* Feature: FN
+
+  /** getter for FN - gets Number of false negatives in the QASet
+   * @generated
+   * @return value of the feature 
+   */
+  public int getFN() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_FN == null)
+      jcasType.jcas.throwFeatMissing("FN", "type.QASet");
+    return jcasType.ll_cas.ll_getIntValue(addr, ((QASet_Type)jcasType).casFeatCode_FN);}
+    
+  /** setter for FN - sets Number of false negatives in the QASet 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setFN(int v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_FN == null)
+      jcasType.jcas.throwFeatMissing("FN", "type.QASet");
+    jcasType.ll_cas.ll_setIntValue(addr, ((QASet_Type)jcasType).casFeatCode_FN, v);}    
+   
+    
+  //*--------------*
+  //* Feature: rankThreshold
+
+  /** getter for rankThreshold - gets The threshold value for calculating TP, FP, TN, FN
+   * @generated
+   * @return value of the feature 
+   */
+  public double getRankThreshold() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_rankThreshold == null)
+      jcasType.jcas.throwFeatMissing("rankThreshold", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_rankThreshold);}
+    
+  /** setter for rankThreshold - sets The threshold value for calculating TP, FP, TN, FN 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setRankThreshold(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_rankThreshold == null)
+      jcasType.jcas.throwFeatMissing("rankThreshold", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_rankThreshold, v);}    
+   
+    
+  //*--------------*
+  //* Feature: precision
+
+  /** getter for precision - gets Precision over a QASet using rankThreshold and TP/FP/TN/FN
+   * @generated
+   * @return value of the feature 
+   */
+  public double getPrecision() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_precision == null)
+      jcasType.jcas.throwFeatMissing("precision", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_precision);}
+    
+  /** setter for precision - sets Precision over a QASet using rankThreshold and TP/FP/TN/FN 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setPrecision(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_precision == null)
+      jcasType.jcas.throwFeatMissing("precision", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_precision, v);}    
+   
+    
+  //*--------------*
+  //* Feature: recall
+
+  /** getter for recall - gets Recall over a QASet using rankThreshold and TP/FP/TN/FN
+   * @generated
+   * @return value of the feature 
+   */
+  public double getRecall() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_recall == null)
+      jcasType.jcas.throwFeatMissing("recall", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_recall);}
+    
+  /** setter for recall - sets Recall over a QASet using rankThreshold and TP/FP/TN/FN 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setRecall(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_recall == null)
+      jcasType.jcas.throwFeatMissing("recall", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_recall, v);}    
+   
+    
+  //*--------------*
+  //* Feature: accuracy
+
+  /** getter for accuracy - gets Accuracy over a QASet using rankThreshold and TP/FP/TN/FN
+   * @generated
+   * @return value of the feature 
+   */
+  public double getAccuracy() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_accuracy == null)
+      jcasType.jcas.throwFeatMissing("accuracy", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_accuracy);}
+    
+  /** setter for accuracy - sets Accuracy over a QASet using rankThreshold and TP/FP/TN/FN 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setAccuracy(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_accuracy == null)
+      jcasType.jcas.throwFeatMissing("accuracy", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_accuracy, v);}    
+   
+    
+  //*--------------*
+  //* Feature: error
+
+  /** getter for error - gets Error over a QASet using rankThreshold and TP/FP/TN/FN
+   * @generated
+   * @return value of the feature 
+   */
+  public double getError() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_error == null)
+      jcasType.jcas.throwFeatMissing("error", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_error);}
+    
+  /** setter for error - sets Error over a QASet using rankThreshold and TP/FP/TN/FN 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setError(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_error == null)
+      jcasType.jcas.throwFeatMissing("error", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_error, v);}    
+   
+    
+  //*--------------*
+  //* Feature: F1
+
+  /** getter for F1 - gets F1 score over a QASet using rankThreshold and TP/FP/TN/FN
+   * @generated
+   * @return value of the feature 
+   */
+  public double getF1() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_F1 == null)
+      jcasType.jcas.throwFeatMissing("F1", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_F1);}
+    
+  /** setter for F1 - sets F1 score over a QASet using rankThreshold and TP/FP/TN/FN 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setF1(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_F1 == null)
+      jcasType.jcas.throwFeatMissing("F1", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_F1, v);}    
   }
 
     

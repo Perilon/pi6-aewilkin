@@ -14,7 +14,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Keeps track of which questions go with which answers
- * Updated by JCasGen Sun Oct 04 23:30:32 EDT 2015
+ * Updated by JCasGen Sun Oct 11 18:56:45 EDT 2015
  * @generated */
 public class QASet_Type extends ComponentAnnotation_Type {
   /** @generated 
@@ -317,6 +317,246 @@ public class QASet_Type extends ComponentAnnotation_Type {
     ll_cas.ll_setIntValue(addr, casFeatCode_numCorrect, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_TP;
+  /** @generated */
+  final int     casFeatCode_TP;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getTP(int addr) {
+        if (featOkTst && casFeat_TP == null)
+      jcas.throwFeatMissing("TP", "type.QASet");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_TP);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setTP(int addr, int v) {
+        if (featOkTst && casFeat_TP == null)
+      jcas.throwFeatMissing("TP", "type.QASet");
+    ll_cas.ll_setIntValue(addr, casFeatCode_TP, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_FP;
+  /** @generated */
+  final int     casFeatCode_FP;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getFP(int addr) {
+        if (featOkTst && casFeat_FP == null)
+      jcas.throwFeatMissing("FP", "type.QASet");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_FP);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setFP(int addr, int v) {
+        if (featOkTst && casFeat_FP == null)
+      jcas.throwFeatMissing("FP", "type.QASet");
+    ll_cas.ll_setIntValue(addr, casFeatCode_FP, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_TN;
+  /** @generated */
+  final int     casFeatCode_TN;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getTN(int addr) {
+        if (featOkTst && casFeat_TN == null)
+      jcas.throwFeatMissing("TN", "type.QASet");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_TN);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setTN(int addr, int v) {
+        if (featOkTst && casFeat_TN == null)
+      jcas.throwFeatMissing("TN", "type.QASet");
+    ll_cas.ll_setIntValue(addr, casFeatCode_TN, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_FN;
+  /** @generated */
+  final int     casFeatCode_FN;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getFN(int addr) {
+        if (featOkTst && casFeat_FN == null)
+      jcas.throwFeatMissing("FN", "type.QASet");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_FN);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setFN(int addr, int v) {
+        if (featOkTst && casFeat_FN == null)
+      jcas.throwFeatMissing("FN", "type.QASet");
+    ll_cas.ll_setIntValue(addr, casFeatCode_FN, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_rankThreshold;
+  /** @generated */
+  final int     casFeatCode_rankThreshold;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getRankThreshold(int addr) {
+        if (featOkTst && casFeat_rankThreshold == null)
+      jcas.throwFeatMissing("rankThreshold", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_rankThreshold);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setRankThreshold(int addr, double v) {
+        if (featOkTst && casFeat_rankThreshold == null)
+      jcas.throwFeatMissing("rankThreshold", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_rankThreshold, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_precision;
+  /** @generated */
+  final int     casFeatCode_precision;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getPrecision(int addr) {
+        if (featOkTst && casFeat_precision == null)
+      jcas.throwFeatMissing("precision", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_precision);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setPrecision(int addr, double v) {
+        if (featOkTst && casFeat_precision == null)
+      jcas.throwFeatMissing("precision", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_precision, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_recall;
+  /** @generated */
+  final int     casFeatCode_recall;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getRecall(int addr) {
+        if (featOkTst && casFeat_recall == null)
+      jcas.throwFeatMissing("recall", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_recall);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setRecall(int addr, double v) {
+        if (featOkTst && casFeat_recall == null)
+      jcas.throwFeatMissing("recall", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_recall, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_accuracy;
+  /** @generated */
+  final int     casFeatCode_accuracy;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getAccuracy(int addr) {
+        if (featOkTst && casFeat_accuracy == null)
+      jcas.throwFeatMissing("accuracy", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_accuracy);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setAccuracy(int addr, double v) {
+        if (featOkTst && casFeat_accuracy == null)
+      jcas.throwFeatMissing("accuracy", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_accuracy, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_error;
+  /** @generated */
+  final int     casFeatCode_error;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getError(int addr) {
+        if (featOkTst && casFeat_error == null)
+      jcas.throwFeatMissing("error", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_error);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setError(int addr, double v) {
+        if (featOkTst && casFeat_error == null)
+      jcas.throwFeatMissing("error", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_error, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_F1;
+  /** @generated */
+  final int     casFeatCode_F1;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getF1(int addr) {
+        if (featOkTst && casFeat_F1 == null)
+      jcas.throwFeatMissing("F1", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_F1);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setF1(int addr, double v) {
+        if (featOkTst && casFeat_F1 == null)
+      jcas.throwFeatMissing("F1", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_F1, v);}
+    
+  
 
 
 
@@ -364,6 +604,46 @@ public class QASet_Type extends ComponentAnnotation_Type {
  
     casFeat_numCorrect = jcas.getRequiredFeatureDE(casType, "numCorrect", "uima.cas.Integer", featOkTst);
     casFeatCode_numCorrect  = (null == casFeat_numCorrect) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_numCorrect).getCode();
+
+ 
+    casFeat_TP = jcas.getRequiredFeatureDE(casType, "TP", "uima.cas.Integer", featOkTst);
+    casFeatCode_TP  = (null == casFeat_TP) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_TP).getCode();
+
+ 
+    casFeat_FP = jcas.getRequiredFeatureDE(casType, "FP", "uima.cas.Integer", featOkTst);
+    casFeatCode_FP  = (null == casFeat_FP) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_FP).getCode();
+
+ 
+    casFeat_TN = jcas.getRequiredFeatureDE(casType, "TN", "uima.cas.Integer", featOkTst);
+    casFeatCode_TN  = (null == casFeat_TN) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_TN).getCode();
+
+ 
+    casFeat_FN = jcas.getRequiredFeatureDE(casType, "FN", "uima.cas.Integer", featOkTst);
+    casFeatCode_FN  = (null == casFeat_FN) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_FN).getCode();
+
+ 
+    casFeat_rankThreshold = jcas.getRequiredFeatureDE(casType, "rankThreshold", "uima.cas.Double", featOkTst);
+    casFeatCode_rankThreshold  = (null == casFeat_rankThreshold) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_rankThreshold).getCode();
+
+ 
+    casFeat_precision = jcas.getRequiredFeatureDE(casType, "precision", "uima.cas.Double", featOkTst);
+    casFeatCode_precision  = (null == casFeat_precision) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_precision).getCode();
+
+ 
+    casFeat_recall = jcas.getRequiredFeatureDE(casType, "recall", "uima.cas.Double", featOkTst);
+    casFeatCode_recall  = (null == casFeat_recall) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_recall).getCode();
+
+ 
+    casFeat_accuracy = jcas.getRequiredFeatureDE(casType, "accuracy", "uima.cas.Double", featOkTst);
+    casFeatCode_accuracy  = (null == casFeat_accuracy) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_accuracy).getCode();
+
+ 
+    casFeat_error = jcas.getRequiredFeatureDE(casType, "error", "uima.cas.Double", featOkTst);
+    casFeatCode_error  = (null == casFeat_error) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_error).getCode();
+
+ 
+    casFeat_F1 = jcas.getRequiredFeatureDE(casType, "F1", "uima.cas.Double", featOkTst);
+    casFeatCode_F1  = (null == casFeat_F1) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_F1).getCode();
 
   }
 }
