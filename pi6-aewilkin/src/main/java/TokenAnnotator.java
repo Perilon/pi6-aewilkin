@@ -64,8 +64,10 @@ public class TokenAnnotator extends JCasAnnotator_ImplBase {
         StringBuilder builder = new StringBuilder();
        
         for (char c : ts.toCharArray()) {
-          if (Character.isLetterOrDigit(c) || c == '<' || c == '>') {
+          if (Character.isLetterOrDigit(c)) {
             builder.append(Character.isLowerCase(c) ? c: Character.toLowerCase(c));
+          } else if (c == '<' || c == '>') {
+            builder.append(c);
           }
         }
         
@@ -111,8 +113,10 @@ public class TokenAnnotator extends JCasAnnotator_ImplBase {
           enclose words that we also want to not count as proper tokens, are left in here so that the whole
           tokens they enclose can be ignored later in InputDocumentAnnotator.*/
           
-          if (Character.isLetterOrDigit(c) || c == '<' || c == '>') {
+          if (Character.isLetterOrDigit(c)) {
             builder.append(Character.isLowerCase(c) ? c: Character.toLowerCase(c));
+          } else if (c == '<' || c == '>') {
+            builder.append(c);
           }
         }
         

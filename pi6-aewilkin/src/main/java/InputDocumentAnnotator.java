@@ -16,11 +16,14 @@ import type.Question;
 import type.Token;
 import type.QASet;
 import type.InputDocument;
+import type.Ngram;
 
 public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
 
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
+    
+    String[] stopwords = {"a", "as", "able", "about", "above", "according", "accordingly", "across", "actually", "after", "afterwards", "again", "against", "aint", "all", "allow", "allows", "almost", "alone", "along", "already", "also", "although", "always", "am", "among", "amongst", "an", "and", "another", "any", "anybody", "anyhow", "anyone", "anything", "anyway", "anyways", "anywhere", "apart", "appear", "appreciate", "appropriate", "are", "arent", "around", "as", "aside", "ask", "asking", "associated", "at", "available", "away", "awfully", "be", "became", "because", "become", "becomes", "becoming", "been", "before", "beforehand", "behind", "being", "believe", "below", "beside", "besides", "best", "better", "between", "beyond", "both", "brief", "but", "by", "cmon", "cs", "came", "can", "cant", "cannot", "cant", "cause", "causes", "certain", "certainly", "changes", "clearly", "co", "com", "come", "comes", "concerning", "consequently", "consider", "considering", "contain", "containing", "contains", "corresponding", "could", "couldnt", "course", "currently", "definitely", "described", "despite", "did", "didnt", "different", "do", "does", "doesnt", "doing", "dont", "done", "down", "downwards", "during", "each", "edu", "eg", "eight", "either", "else", "elsewhere", "enough", "entirely", "especially", "et", "etc", "even", "ever", "every", "everybody", "everyone", "everything", "everywhere", "ex", "exactly", "example", "except", "far", "few", "ff", "fifth", "first", "five", "followed", "following", "follows", "for", "former", "formerly", "forth", "four", "from", "further", "furthermore", "get", "gets", "getting", "given", "gives", "go", "goes", "going", "gone", "got", "gotten", "greetings", "had", "hadnt", "happens", "hardly", "has", "hasnt", "have", "havent", "having", "he", "hes", "hello", "help", "hence", "her", "here", "heres", "hereafter", "hereby", "herein", "hereupon", "hers", "herself", "hi", "him", "himself", "his", "hither", "hopefully", "how", "howbeit", "however", "i", "id", "ill", "im", "ive", "ie", "if", "ignored", "immediate", "in", "inasmuch", "inc", "indeed", "indicate", "indicated", "indicates", "inner", "insofar", "instead", "into", "inward", "is", "isnt", "it", "itd", "itll", "its", "its", "itself", "just", "keep", "keeps", "kept", "know", "knows", "known", "last", "lately", "later", "latter", "latterly", "least", "less", "lest", "let", "lets", "like", "liked", "likely", "little", "look", "looking", "looks", "ltd", "mainly", "many", "may", "maybe", "me", "mean", "meanwhile", "merely", "might", "more", "moreover", "most", "mostly", "much", "must", "my", "myself", "name", "namely", "nd", "near", "nearly", "necessary", "need", "needs", "neither", "never", "nevertheless", "new", "next", "nine", "no", "nobody", "non", "none", "noone", "nor", "normally", "not", "nothing", "novel", "now", "nowhere", "obviously", "of", "off", "often", "oh", "ok", "okay", "old", "on", "once", "one", "ones", "only", "onto", "or", "other", "others", "otherwise", "ought", "our", "ours", "ourselves", "out", "outside", "over", "overall", "own", "particular", "particularly", "per", "perhaps", "placed", "please", "plus", "possible", "presumably", "probably", "provides", "que", "quite", "qv", "rather", "rd", "re", "really", "reasonably", "regarding", "regardless", "regards", "relatively", "respectively", "right", "said", "same", "saw", "say", "saying", "says", "second", "secondly", "see", "seeing", "seem", "seemed", "seeming", "seems", "seen", "self", "selves", "sensible", "sent", "serious", "seriously", "seven", "several", "shall", "she", "should", "shouldnt", "since", "six", "so", "some", "somebody", "somehow", "someone", "something", "sometime", "sometimes", "somewhat", "somewhere", "soon", "sorry", "specified", "specify", "specifying", "still", "sub", "such", "sup", "sure", "ts", "take", "taken", "tell", "tends", "th", "than", "thank", "thanks", "thanx", "that", "thats", "thats", "the", "their", "theirs", "them", "themselves", "then", "thence", "there", "theres", "thereafter", "thereby", "therefore", "therein", "theres", "thereupon", "these", "they", "theyd", "theyll", "theyre", "theyve", "think", "third", "this", "thorough", "thoroughly", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "took", "toward", "towards", "tried", "tries", "truly", "try", "trying", "twice", "two", "un", "under", "unfortunately", "unless", "unlikely", "until", "unto", "up", "upon", "us", "use", "used", "useful", "uses", "using", "usually", "value", "various", "very", "via", "viz", "vs", "want", "wants", "was", "wasnt", "way", "we", "wed", "well", "were", "weve", "welcome", "well", "went", "were", "werent", "what", "whats", "whatever", "when", "whence", "whenever", "where", "wheres", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whos", "whoever", "whole", "whom", "whose", "why", "will", "willing", "wish", "with", "within", "without", "wont", "wonder", "would", "would", "wouldnt", "yes", "yet", "you", "youd", "youll", "youre", "youve", "your", "yours", "yourself", "yourselves", "zero"};
     
     FSIndex passageIndex = aJCas.getAnnotationIndex(Passage.type);
     FSIndex questionIndex = aJCas.getAnnotationIndex(Question.type);
@@ -41,18 +44,6 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       
       qaSet = (QASet) qaIter.next();
       
-
-//      Question question = new Question(aJCas);
-//      
-//      question = (Question) questionIter.next();
-//      int beginQuestion = question.getBegin();
-//      int endQuestion = question.getEnd();
-//      
-//      question.setBegin(beginQuestion);
-//      question.setEnd(endQuestion);
-//      question.addToIndexes();
-      
-      
       Question question = qaSet.getQuestion();
       
 //      Now get the tokens in the question, put their string versions in a string array.
@@ -69,6 +60,19 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         tokenQuestionStringArray[i] = tokenQuestionList.get(i).getToStringValue();
       }
       
+      
+      /*Do the same thing for the ngrams.*/
+      
+      FSIndex nGramIndexQuestion = aJCas.getAnnotationIndex(Ngram.type);
+      List<Ngram> nGramQuestionList = JCasUtil.selectCovered(aJCas, Ngram.class, question.getBegin() - 1, question.getEnd());
+      int questionNgramLen = nGramQuestionList.size();
+      String[] nGramQuestionStringArray = new String[questionNgramLen];
+      for (int i = 0; i < questionNgramLen; i++) {
+        nGramQuestionStringArray[i] = nGramQuestionList.get(i).getToStringValue();
+      }
+      
+      
+      
 //      Now for each answer, get the tokens, put their string versions in a string array, and calculate the score.
       
       FSArray passageFSArray = qaSet.getPassageFSArray();
@@ -79,11 +83,6 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       for (int i = 0; i < passageFSArrayLen; i++) {
         Passage passage = (Passage) passageFSArray.get(i);
         
-//        System.out.println(passage);
-        
-        int begin = passage.getBegin();
-        int end = passage.getEnd();
-        
         List<Token> tokenPassageList = JCasUtil.selectCovered(aJCas, Token.class, passage.getBegin() - 1, passage.getEnd());
         
         int passageListLen = tokenPassageList.size();
@@ -93,6 +92,21 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         for (int j = 0; j < passageListLen; j++) {
           tokenPassageStringArray[j] = tokenPassageList.get(j).getToStringValue();
         }
+        
+        
+        
+        /*Get the passage ngrams too.*/
+        
+        FSIndex nGramIndexPassage = aJCas.getAnnotationIndex(Ngram.type);
+        List<Ngram> nGramPassageList = JCasUtil.selectCovered(aJCas, Ngram.class, passage.getBegin() - 1, passage.getEnd());
+        int passageNgramLen = nGramPassageList.size();
+        String[] nGramPassageStringArray = new String[passageNgramLen];
+        for (int h = 0; h < passageNgramLen; h++) {
+          nGramPassageStringArray[h] = nGramPassageList.get(h).getToStringValue();
+        }
+        
+        
+        /*Calculate score for tokens.*/
 
         int matchesCounter = 0;
         int worthyMatches = 0;
@@ -108,6 +122,8 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
             if (!tokenPassageStringArray[L].equals("") &&
                     tokenPassageStringArray[L].charAt(0) != '<' && 
                     tokenPassageStringArray[L].charAt(tokenPassageStringArray[L].length() - 1) != '>') {
+//                    !(Arrays.asList(stopwords).contains(tokenPassageStringArray[L])) &&
+//                    !(Arrays.asList(stopwords).contains(tokenQuestionStringArray[k]))) {
               worthyMatches++;
               if (tokenQuestionStringArray[k].equals(tokenPassageStringArray[L])) {
                 matchesCounter++;
@@ -115,6 +131,7 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
             }
           }
         }
+        
         
         double precision = (double) matchesCounter / (double) worthyMatches;
         double recall = (double) matchesCounter / (double) tokenQuestionStringArray.length;
@@ -125,7 +142,46 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         } else
           F1 = 0;
         
-        passage.setScore(F1);
+        
+        
+        /*Calculate score for ngrams.*/
+        
+        int matchesCounterNG = 0;
+        int worthyMatchesNG = 0;
+        
+        for (int m = 0; m < nGramQuestionStringArray.length; m++) {
+
+          for (int n = 0; n < nGramPassageStringArray.length; n++) {
+            
+            /*Precision is calculated with the numerator being the number of matches (naturally) and the denominator
+            being the number of words that represent "real" tokens in the passage; i.e., this disincludes HTML
+            tags and the words they enclose.*/
+            
+            if (!nGramPassageStringArray[n].equals("") &&
+                    nGramPassageStringArray[n].charAt(0) != '<' && 
+                            nGramPassageStringArray[n].charAt(nGramPassageStringArray[n].length() - 1) != '>') {
+              worthyMatchesNG++;
+              if (nGramQuestionStringArray[m].equals(nGramPassageStringArray[n])) {
+                matchesCounterNG++;
+              }
+            }
+          }
+        }
+        
+        
+        double precisionNG = (double) matchesCounterNG / (double) worthyMatchesNG;
+        double recallNG = (double) matchesCounterNG / (double) tokenQuestionStringArray.length;
+        double F1NG;
+        
+        if ((precisionNG + recallNG) != 0) {
+          F1NG = 2 * ((precisionNG * recallNG) / (precisionNG + recallNG));
+        } else
+          F1NG = 0;
+        
+        
+        
+        
+        passage.setScore(F1NG);
         
 //        passage.setScore(recall);
         

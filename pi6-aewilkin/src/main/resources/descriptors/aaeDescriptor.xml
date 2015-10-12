@@ -20,6 +20,11 @@
       <import location="/home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/QASetDescriptor.xml"/>
     
     </delegateAnalysisEngine>
+  <delegateAnalysisEngine key="NgramAnnotatorDescriptor">
+      <import location="/home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/NgramAnnotatorDescriptor.xml"/>
+    
+    
+    </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>aaeDescriptor</name>
@@ -33,8 +38,9 @@
         <node>PassageAnnotatorDescriptor</node>
         <node>QuestionAnnotatorDescriptor</node>
         <node>TokenAnnotatorDescriptor</node>
-      <node>QASetDescriptor</node>
-        <node>InputDocumentAnnotatorDescriptor</node>
+      <node>NgramAnnotatorDescriptor</node>
+        <node>QASetDescriptor</node>
+      <node>InputDocumentAnnotatorDescriptor</node>
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>
@@ -49,6 +55,7 @@
           <type allAnnotatorFeatures="true">type.Passage</type>
           <type allAnnotatorFeatures="true">type.InputDocument</type>
           <type allAnnotatorFeatures="true">type.ComponentAnnotation</type>
+        <type allAnnotatorFeatures="true">type.Ngram</type>
         </outputs>
         <languagesSupported/>
       </capability>

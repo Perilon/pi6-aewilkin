@@ -24,6 +24,7 @@
           <type allAnnotatorFeatures="true">type.QASet</type>
           <type allAnnotatorFeatures="true">type.Passage</type>
           <type allAnnotatorFeatures="true">type.ComponentAnnotation</type>
+        <type allAnnotatorFeatures="true">type.Ngram</type>
         </inputs>
         <outputs>
           <type allAnnotatorFeatures="true">type.Token</type>
@@ -32,6 +33,7 @@
           <type allAnnotatorFeatures="true">type.Passage</type>
           <type allAnnotatorFeatures="true">type.InputDocument</type>
           <type allAnnotatorFeatures="true">type.ComponentAnnotation</type>
+        <type allAnnotatorFeatures="true">type.Ngram</type>
         </outputs>
         <languagesSupported/>
       </capability>
