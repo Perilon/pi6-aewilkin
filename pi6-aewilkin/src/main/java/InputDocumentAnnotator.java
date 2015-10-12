@@ -126,6 +126,9 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
           F1 = 0;
         
         passage.setScore(F1);
+        
+//        passage.setScore(recall);
+        
 //        System.out.println("matchesCounter = " + matchesCounter);
 //        System.out.println("passageListLen = " + passageListLen);
 //        System.out.println("score = " + ((double) matchesCounter / (double) passageListLen));
@@ -145,6 +148,7 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         private int begin;
         private int end;
         private String sentence;
+        private String sentLem;
         private double score;
         private boolean label;
         private String sourceDocID;
@@ -163,6 +167,10 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         
         public void setSentence(String sent) {
           this.sentence = sent;
+        }
+        
+        public void setSentLem(String sentLem) {
+          this.sentLem = sentLem;
         }
         
         public void setScore(double sc) {
@@ -191,6 +199,10 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         
         public String getSentence() {
           return this.sentence;
+        }
+        
+        public String getSentLem() {
+          return this.sentLem;
         }
         
         public double getScore() {
@@ -231,6 +243,7 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         psg.setEnd(passage.getEnd());
         psg.setScore(passage.getScore());
         psg.setSentence(passage.getSentence());
+        psg.setSentence(passage.getSentenceLemmatized());
         psg.setLabel(passage.getLabel());
         psg.setSourceDocID(passage.getSourceDocId());
         psg.setID(passage.getId());
@@ -254,6 +267,7 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         newPass.setEnd(psgArray[i].getEnd());
         newPass.setScore(psgArray[i].getScore());
         newPass.setSentence(psgArray[i].getSentence());
+        newPass.setSentenceLemmatized(psgArray[i].getSentLem());
         newPass.setLabel(psgArray[i].getLabel());
         newPass.setSourceDocId(psgArray[i].getSourceDocID());
         newPass.setId(psgArray[i].getId());

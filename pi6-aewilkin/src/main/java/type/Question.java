@@ -11,8 +11,8 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** Stores the information about a question.
- * Updated by JCasGen Sun Oct 11 18:56:45 EDT 2015
- * XML source: /home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/aaeDescriptor.xml
+ * Updated by JCasGen Sun Oct 11 23:59:26 EDT 2015
+ * XML source: /home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class Question extends ComponentAnnotation {
   /** @generated
@@ -140,6 +140,28 @@ public class Question extends ComponentAnnotation {
     if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_passages == null)
       jcasType.jcas.throwFeatMissing("passages", "type.Question");
     jcasType.ll_cas.ll_setRefValue(addr, ((Question_Type)jcasType).casFeatCode_passages, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: sentenceLemmatized
+
+  /** getter for sentenceLemmatized - gets The text of the sentence, with each word lemmatized
+   * @generated
+   * @return value of the feature 
+   */
+  public String getSentenceLemmatized() {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_sentenceLemmatized == null)
+      jcasType.jcas.throwFeatMissing("sentenceLemmatized", "type.Question");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Question_Type)jcasType).casFeatCode_sentenceLemmatized);}
+    
+  /** setter for sentenceLemmatized - sets The text of the sentence, with each word lemmatized 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setSentenceLemmatized(String v) {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_sentenceLemmatized == null)
+      jcasType.jcas.throwFeatMissing("sentenceLemmatized", "type.Question");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Question_Type)jcasType).casFeatCode_sentenceLemmatized, v);}    
   }
 
     

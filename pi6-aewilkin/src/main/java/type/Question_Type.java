@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Stores the information about a question.
- * Updated by JCasGen Sun Oct 11 18:56:45 EDT 2015
+ * Updated by JCasGen Sun Oct 11 23:59:26 EDT 2015
  * @generated */
 public class Question_Type extends ComponentAnnotation_Type {
   /** @generated 
@@ -116,6 +116,30 @@ public class Question_Type extends ComponentAnnotation_Type {
     ll_cas.ll_setRefValue(addr, casFeatCode_passages, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_sentenceLemmatized;
+  /** @generated */
+  final int     casFeatCode_sentenceLemmatized;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getSentenceLemmatized(int addr) {
+        if (featOkTst && casFeat_sentenceLemmatized == null)
+      jcas.throwFeatMissing("sentenceLemmatized", "type.Question");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_sentenceLemmatized);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setSentenceLemmatized(int addr, String v) {
+        if (featOkTst && casFeat_sentenceLemmatized == null)
+      jcas.throwFeatMissing("sentenceLemmatized", "type.Question");
+    ll_cas.ll_setStringValue(addr, casFeatCode_sentenceLemmatized, v);}
+    
+  
 
 
 
@@ -139,6 +163,10 @@ public class Question_Type extends ComponentAnnotation_Type {
  
     casFeat_passages = jcas.getRequiredFeatureDE(casType, "passages", "uima.cas.FSList", featOkTst);
     casFeatCode_passages  = (null == casFeat_passages) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_passages).getCode();
+
+ 
+    casFeat_sentenceLemmatized = jcas.getRequiredFeatureDE(casType, "sentenceLemmatized", "uima.cas.String", featOkTst);
+    casFeatCode_sentenceLemmatized  = (null == casFeat_sentenceLemmatized) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_sentenceLemmatized).getCode();
 
   }
 }

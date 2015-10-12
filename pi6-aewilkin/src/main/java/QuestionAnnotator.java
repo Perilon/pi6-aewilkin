@@ -52,6 +52,12 @@ public class QuestionAnnotator extends JCasAnnotator_ImplBase {
       
       annotation.setSentence(questionText);
       
+      StanfordLemmatizer lemmatizer = new StanfordLemmatizer();
+      
+      String questionTextLemmatized = lemmatizer.lemmatize(questionText);
+      
+      annotation.setSentenceLemmatized(questionTextLemmatized);
+      
       annotation.addToIndexes();
       
       pos = matcher.end();

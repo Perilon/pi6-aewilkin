@@ -67,6 +67,12 @@ public class PassageAnnotator extends JCasAnnotator_ImplBase {
 //      String finalSentence = builder.toString();
       annotation.setSentence(passageText);
       
+      StanfordLemmatizer lemmatizer = new StanfordLemmatizer();
+      
+      String passageTextLemmatized = lemmatizer.lemmatize(passageText);
+      
+      annotation.setSentenceLemmatized(passageTextLemmatized);
+      
       
       annotation.addToIndexes();
       pos = matcher.end();

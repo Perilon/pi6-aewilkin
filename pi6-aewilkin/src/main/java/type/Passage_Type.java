@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Stores the information of the passage.
- * Updated by JCasGen Sun Oct 11 18:56:45 EDT 2015
+ * Updated by JCasGen Sun Oct 11 23:59:26 EDT 2015
  * @generated */
 public class Passage_Type extends ComponentAnnotation_Type {
   /** @generated 
@@ -188,6 +188,30 @@ public class Passage_Type extends ComponentAnnotation_Type {
     ll_cas.ll_setDoubleValue(addr, casFeatCode_reciprocalRank, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_sentenceLemmatized;
+  /** @generated */
+  final int     casFeatCode_sentenceLemmatized;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getSentenceLemmatized(int addr) {
+        if (featOkTst && casFeat_sentenceLemmatized == null)
+      jcas.throwFeatMissing("sentenceLemmatized", "type.Passage");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_sentenceLemmatized);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setSentenceLemmatized(int addr, String v) {
+        if (featOkTst && casFeat_sentenceLemmatized == null)
+      jcas.throwFeatMissing("sentenceLemmatized", "type.Passage");
+    ll_cas.ll_setStringValue(addr, casFeatCode_sentenceLemmatized, v);}
+    
+  
 
 
 
@@ -223,6 +247,10 @@ public class Passage_Type extends ComponentAnnotation_Type {
  
     casFeat_reciprocalRank = jcas.getRequiredFeatureDE(casType, "reciprocalRank", "uima.cas.Double", featOkTst);
     casFeatCode_reciprocalRank  = (null == casFeat_reciprocalRank) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_reciprocalRank).getCode();
+
+ 
+    casFeat_sentenceLemmatized = jcas.getRequiredFeatureDE(casType, "sentenceLemmatized", "uima.cas.String", featOkTst);
+    casFeatCode_sentenceLemmatized  = (null == casFeat_sentenceLemmatized) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_sentenceLemmatized).getCode();
 
   }
 }

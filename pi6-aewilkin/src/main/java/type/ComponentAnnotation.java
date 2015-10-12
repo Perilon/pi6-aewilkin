@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** A parent annotation which expects individual annotation types to inherit from.
- * Updated by JCasGen Sun Oct 11 18:56:45 EDT 2015
- * XML source: /home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/aaeDescriptor.xml
+ * Updated by JCasGen Sun Oct 11 23:59:26 EDT 2015
+ * XML source: /home/perilon/git/pi6-aewilkin/pi6-aewilkin/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class ComponentAnnotation extends Annotation {
   /** @generated

@@ -3,6 +3,7 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.FSIndex;
 import org.apache.uima.jcas.JCas;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -16,11 +17,12 @@ import type.Token;
 public class TokenAnnotator extends JCasAnnotator_ImplBase {
   
   private Pattern mTokenPattern = 
-          Pattern.compile("([\\S]+)");
+          Pattern.compile("([^\\s]+)");
 
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     
+    StanfordLemmatizer lemmatizer = new StanfordLemmatizer();    
 
     FSIndex passageIndex = aJCas.getAnnotationIndex(Passage.type);
     FSIndex questionIndex = aJCas.getAnnotationIndex(Question.type);
@@ -31,47 +33,53 @@ public class TokenAnnotator extends JCasAnnotator_ImplBase {
     while (passageIter.hasNext()) {
       Passage passage = (Passage) passageIter.next();
       
+//      String lemmasString = passage.getSentenceLemmatized();
       
-//      HashMap<String, Integer> seenTokens = new HashMap<String, Integer>();
+//      System.out.println("lemmasString (passage) = " + lemmasString);
       
+//      String[] lemmasArray = lemmasString.split("([\\s]+)");
+      
+//      System.out.println("lemmasArray (passage) = " + Arrays.toString(lemmasArray));
+//      System.out.println("lemmasArrayLen (passage) = " + Integer.toString(lemmasArray.length));
       
       Matcher matcher = mTokenPattern.matcher(passage.getSentence());
       int pos = 0;
+//      int index = 0;
       while (matcher.find(pos)) {
-//        System.out.println(matcher);
+        
         Token token = new Token(aJCas);
-        
-
-        
         
         token.setBegin(passage.getBegin() + matcher.start(1));
         token.setEnd(passage.getBegin() + matcher.end(1));
         
+//        String whatisthistoken = token.getCoveredText();
+//        System.out.println("token = " + whatisthistoken);
+        
         String ts = token.getCoveredText();
         
+//        String lemma = lemmasArray[index];
         
-//        ts.replaceAll("</?TEXT>", "");
-//        ts.replaceAll("</?P>", "");
+//        System.out.println("lemma = " + lemma);
         
         StringBuilder builder = new StringBuilder();
        
         for (char c : ts.toCharArray()) {
-          if (Character.isLetterOrDigit(c) || c == ' ') {
+          if (Character.isLetterOrDigit(c) || c == '<' || c == '>') {
             builder.append(Character.isLowerCase(c) ? c: Character.toLowerCase(c));
           }
         }
         
         String finalToken = builder.toString();
         
+        String finalTokenLemmatized = lemmatizer.lemmatize(finalToken);
         
-        
-        
-//        token.setToStringValue(matcher.group(1));
-        
-        token.setToStringValue(finalToken);
+        token.setToStringValue(finalTokenLemmatized);
         
         token.addToIndexes();
         pos = matcher.end();
+        
+//        index++;
+        
       }
     }
     
@@ -80,19 +88,20 @@ public class TokenAnnotator extends JCasAnnotator_ImplBase {
     while (questionIter.hasNext()) {
       Question question = (Question) questionIter.next();
       
+//      String lemmasString = question.getSentenceLemmatized();
+//      String[] lemmasArray = lemmasString.split(" ");
+      
       Matcher matcher = mTokenPattern.matcher(question.getSentence());
       int pos = 0;
+      int index = 0;
       while (matcher.find(pos)) {
-//        System.out.println(matcher);
         Token token = new Token(aJCas);
         token.setBegin(question.getBegin() + matcher.start(1));
         token.setEnd(question.getBegin() + matcher.end(1));
         
         String ts = token.getCoveredText();
         
-        
-//      ts.replaceAll("</?TEXT>", "");
-//      ts.replaceAll("</?P>", "");
+//        String ts = lemmasArray[index];
       
         StringBuilder builder = new StringBuilder();
        
@@ -109,16 +118,17 @@ public class TokenAnnotator extends JCasAnnotator_ImplBase {
         
         String finalToken = builder.toString();
         
+        String finalTokenLemmatized = lemmatizer.lemmatize(finalToken);
         
-        
-        
-  //      token.setToStringValue(matcher.group(1));
+        token.setToStringValue(finalTokenLemmatized);
+
         
         token.setToStringValue(finalToken);        
         
-//        token.setToStringValue(matcher.group(1));
         token.addToIndexes();
         pos = matcher.end();
+        
+        index++;
       }
     }
   }

@@ -56,6 +56,11 @@ You need to implement the types requried for your ranking model.</description>
           <rangeTypeName>uima.cas.FSList</rangeTypeName>
           <elementType>type.Passage</elementType>
         </featureDescription>
+      <featureDescription>
+          <name>sentenceLemmatized</name>
+          <description>The text of the sentence, with each word lemmatized</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>
@@ -92,6 +97,11 @@ You need to implement the types requried for your ranking model.</description>
           <name>reciprocalRank</name>
           <description>The reciprocal rank of the passage in its QASet</description>
           <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+      <featureDescription>
+          <name>sentenceLemmatized</name>
+          <description>The text of the passage, with each word lemmatized</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>
