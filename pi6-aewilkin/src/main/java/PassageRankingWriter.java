@@ -187,8 +187,10 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
             
             /*Write header line of csv document*/
             
-            bw.write("Question ID,Precision at 1,Precision at 5,Reciprocal rank,Average precision,,TP,FN,FP,TN,Precision,"
-                    + "Recall,Accuracy,Error,F1\n");
+//            bw.write("Question ID,Precision at 1,Precision at 5,Reciprocal rank,Average precision,,TP,FN,FP,TN,Precision,"
+//                    + "Recall,Accuracy,Error,F1\n");
+            
+            bw.write("Question ID,TP,FN,FP,Precision,Recall,F1\n");
             
             while (QASetIter.hasNext()) {
               
@@ -247,14 +249,21 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
                 BigDecimal bd7 = new BigDecimal(F1).setScale(3, RoundingMode.HALF_EVEN);
                 F1 = bd7.doubleValue();
                                               
-                bw.write(ID + "," + Double.toString(Pat1) + "," + Double.toString(Pat5) + "," + 
-                        Double.toString(RR) + "," + Double.toString(AP) + "," + "," + 
-                        
+//                bw.write(ID + "," + Double.toString(Pat1) + "," + Double.toString(Pat5) + "," + 
+//                        Double.toString(RR) + "," + Double.toString(AP) + "," + "," + 
+//                        
+//                        Double.toString(TP) + "," + Double.toString(FN) + "," + 
+//                        Double.toString(FP) + "," + Double.toString(TN) + "," + 
+//                        Double.toString(Precision) + "," + Double.toString(Recall) + "," +
+//                        Double.toString(Accuracy) + "," + Double.toString(Error) + "," +
+//                        Double.toString(F1) + "\n");
+                
+                bw.write(ID + "," + 
                         Double.toString(TP) + "," + Double.toString(FN) + "," + 
-                        Double.toString(FP) + "," + Double.toString(TN) + "," + 
+                        Double.toString(FP) + "," +
                         Double.toString(Precision) + "," + Double.toString(Recall) + "," +
-                        Double.toString(Accuracy) + "," + Double.toString(Error) + "," +
                         Double.toString(F1) + "\n");
+                
               }
             }
             

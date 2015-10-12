@@ -178,7 +178,7 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         } else
           F1NG = 0;
         
-        
+//        double grandTotal = F1 + F1NG;
         
         
         passage.setScore(F1NG);
